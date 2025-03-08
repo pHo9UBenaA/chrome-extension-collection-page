@@ -31,7 +31,7 @@
 		"@types/mdast": "^4.0.4",
 		"@types/unist": "^3.0.3",
 		"unified": "^11.0.5",
-		"wrangler": "^3.109.0"
+		"wrangler": "^3.109.1"
 	},
 	"resolutions": {
 		"cookie": "^0.7.0",
