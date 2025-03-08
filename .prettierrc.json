@@ -1,0 +1,11 @@
+{
+	"printWidth": 10000,
+	"overrides": [
+		{
+			"files": ["*.md", "*.mdx"],
+			"options": {
+				"proseWrap": "always"
+			}
+		}
+	]
+}

@@ -1,0 +1,37 @@
+---
+title: Contact & Support
+description: Contact & Support
+---
+
+import { EXTENSIONS } from "../../consts";
+export const extensions = EXTENSIONS;
+
+<h3 id="contact-support">Contact & Support</h3>
+
+If you have any inquiries or concerns regarding our products, please feel free to reach out to us.
+
+You can contact us using one of the methods listed below.
+
+#### Web Store
+
+<ul>
+  {extensions.map((ext) => (
+    <li key={`${ext.id}-support`}>
+      <p>
+        <a href={ext.support}>{ext.name}</a>
+      </p>
+    </li>
+  ))}
+</ul>
+
+#### GitHub
+
+<ul>
+  {extensions.map((ext) => (
+    <li key={`${ext.id}-github`}>
+      <p>
+        <a href={ext.github}>{ext.name}</a>
+      </p>
+    </li>
+  ))}
+</ul>

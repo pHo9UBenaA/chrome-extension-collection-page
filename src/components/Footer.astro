@@ -1,0 +1,20 @@
+---
+import { SITE_AUTHOR, SITE_AUTHOR_ID } from '../consts';
+
+const today = new Date();
+---
+
+<footer>
+	<div>
+		&copy; {today.getFullYear()} {SITE_AUTHOR}, also known as {SITE_AUTHOR_ID}
+	</div>
+</footer>
+<style>
+	footer {
+		padding: 1rem;
+		background: rgba(var(--pink), 1);
+		text-align: center;
+		font-size: 0.8rem;
+		text-align: right;
+	}
+</style>

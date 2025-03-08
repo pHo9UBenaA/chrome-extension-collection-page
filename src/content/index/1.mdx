@@ -1,0 +1,28 @@
+---
+title: Collection
+description: Collection
+---
+
+import { EXTENSIONS } from "../../consts";
+export const extensions = EXTENSIONS;
+
+<h3 id="collection">Collection</h3>
+
+This is a collection of my chrome extensions.
+
+<ol>
+  {extensions.map((ext) => (
+    <li key={ext.id}>
+      <p>
+        <strong>{ext.name}</strong>
+      </p>
+      <p>{ext.description}</p>
+      <p>
+        Get it on&nbsp;
+        <a href={ext.webStore} target="_blank" rel="noopener noreferrer">
+          Chrome Web Store
+        </a>
+      </p>
+    </li>
+  ))}
+</ol>
