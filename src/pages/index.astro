@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+
+import Layout from '../layout/Layout.astro';
+import { SITE_AUTHOR } from '../consts';
+import { render } from 'astro:content';
+
+const sortedCollection = async (
+	collection: Awaited<ReturnType<typeof getCollection>>,
+) => {
+	const sortedCollection = collection.sort((a, b) => {
+		const prefixA = Number.parseInt(a.id.match(/^\d+/)?.[0] || '0', 10);
+		const prefixB = Number.parseInt(b.id.match(/^\d+/)?.[0] || '0', 10);
+		return prefixA - prefixB;
+	});
+
+	return sortedCollection;
+};
+
+const getIndexCollection = async () => {
+	const collection = await getCollection('index');
+
+	return sortedCollection(collection);
+};
+
+const getIndexContents = async () => {
+	return await Promise.all(
+		indexCollection.map(async (collection) => {
+			const { Content } = await render(collection);
+			return Content;
+		}),
+	);
+};
+
+const indexCollection = await getIndexCollection();
+
+const indexContents = await getIndexContents();
+---
+
+<Layout>
+	  <main>
+		<h2>{SITE_AUTHOR}'s Chrome Extensions</h2>
+		<p>Welcome to the Chrome Extensions collection created by {SITE_AUTHOR}.</p>
+		{indexContents.map((Content) => (
+			<div class="container">
+				<Content />
+			</div>
+		))}
+</Layout>
+
+<style>
+	button:hover {
+		cursor: pointer;
+	}
+	.container {
+		border: 1px solid #ccc;
+		padding: 1rem;
+		margin: 1rem 0;
+	}
+</style>
