@@ -27,7 +27,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@cloudflare/workers-types": "^4.20250204.0",
+		"@cloudflare/workers-types": "^4.20250430.0",
 		"@types/mdast": "^4.0.4",
 		"@types/unist": "^3.0.3",
 		"unified": "^11.0.5",
