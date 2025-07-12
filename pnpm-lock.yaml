@@ -14,16 +14,16 @@ importers:
     dependencies:
       '@astrojs/cloudflare':
         specifier: ^12.2.1
-        version: 12.2.1(@types/node@22.13.4)(astro@5.3.0(@types/node@22.13.4)(rollup@4.34.6)(typescript@5.7.3))
+        version: 12.2.1(@types/node@24.0.13)(astro@5.3.0(@types/node@24.0.13)(rollup@4.34.6)(typescript@5.7.3))
       '@astrojs/mdx':
         specifier: ^4.0.8
-        version: 4.0.8(astro@5.3.0(@types/node@22.13.4)(rollup@4.34.6)(typescript@5.7.3))
+        version: 4.0.8(astro@5.3.0(@types/node@24.0.13)(rollup@4.34.6)(typescript@5.7.3))
       '@astrojs/sitemap':
         specifier: ^3.2.1
         version: 3.2.1
       astro:
         specifier: ^5.3.0
-        version: 5.3.0(@types/node@22.13.4)(rollup@4.34.6)(typescript@5.7.3)
+        version: 5.3.0(@types/node@24.0.13)(rollup@4.34.6)(typescript@5.7.3)
       remark-breaks:
         specifier: ^4.0.0
         version: 4.0.0
@@ -40,9 +40,15 @@ importers:
       '@cloudflare/workers-types':
         specifier: ^4.20250204.0
         version: 4.20250204.0
+      '@playwright/test':
+        specifier: ^1.54.1
+        version: 1.54.1
       '@types/mdast':
         specifier: ^4.0.4
         version: 4.0.4
+      '@types/node':
+        specifier: ^24.0.13
+        version: 24.0.13
       '@types/unist':
         specifier: ^3.0.3
         version: 3.0.3
@@ -503,6 +509,11 @@ packages:
   '@oslojs/encoding@1.1.0':
     resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
 
+  '@playwright/test@1.54.1':
+    resolution: {integrity: sha512-FS8hQ12acieG2dYSksmLOF7BNxnVf2afRJdCuM1eMSxj6QTSE6G4InGF7oApGgDb65MX7AwMVlIkpru0yZA4Xw==}
+    engines: {node: '>=18'}
+    hasBin: true
+
   '@rollup/pluginutils@5.1.4':
     resolution: {integrity: sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ==}
     engines: {node: '>=14.0.0'}
@@ -661,8 +672,8 @@ packages:
   '@types/node@17.0.45':
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
 
-  '@types/node@22.13.4':
-    resolution: {integrity: sha512-ywP2X0DYtX3y08eFVx5fNIw7/uIv8hYUKgXoK8oayJlLnKcRfEYCxWMVE1XagUdVtCJlZT1AU4LXEABW+L1Peg==}
+  '@types/node@24.0.13':
+    resolution: {integrity: sha512-Qm9OYVOFHFYg3wJoTSrz80hoec5Lia/dPp84do3X7dZvLikQvM1YpmvTBEdIr/e+U8HTkFjLHLnl78K/qjf+jQ==}
 
   '@types/sax@1.2.7':
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
@@ -994,6 +1005,11 @@ packages:
   flattie@1.1.1:
     resolution: {integrity: sha512-9UbaD6XdAL97+k/n+N7JwX46K/M6Zc6KcFYskrYL8wbBV/Uyk0CTAMY0VT+qiK5PM7AIc9aTWYtq65U7T+aCNQ==}
     engines: {node: '>=8'}
+
+  fsevents@2.3.2:
+    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
 
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
@@ -1472,6 +1488,16 @@ packages:
   pkg-types@1.3.1:
     resolution: {integrity: sha512-/Jm5M4RvtBFVkKWRu2BLUTNP8/M2a+UwuAX+ae4770q1qVGtfjG+WTCupoZixokjmHiry8uI+dlY8KXYV5HVVQ==}
 
+  playwright-core@1.54.1:
+    resolution: {integrity: sha512-Nbjs2zjj0htNhzgiy5wu+3w09YetDx5pkrpI/kZotDlDUaYk0HVA5xrBVPdow4SAUIlhgKcJeJg4GRKW6xHusA==}
+    engines: {node: '>=18'}
+    hasBin: true
+
+  playwright@1.54.1:
+    resolution: {integrity: sha512-peWpSwIBmSLi6aW2auvrUtf2DqY16YYcCMO8rTVx486jKmDTJg7UAhyrraP98GB8BoPURZP8+nxO7TSd4cPr5g==}
+    engines: {node: '>=18'}
+    hasBin: true
+
   postcss@8.5.3:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
@@ -1735,8 +1761,8 @@ packages:
   uncrypto@0.1.3:
     resolution: {integrity: sha512-Ql87qFHB3s/De2ClA9e0gsnS6zXG27SkTiSJwjCc9MebbfapQfuPzumMIUMi38ezPZVNFcHI9sUIepeQfw8J8Q==}
 
-  undici-types@6.20.0:
-    resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
+  undici-types@7.8.0:
+    resolution: {integrity: sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw==}
 
   undici@5.28.5:
     resolution: {integrity: sha512-zICwjrDrcrUE0pyyJc1I2QzBkLM8FINsgOrt6WjA+BgajVq9Nxu2PbFFXUrAggLfDXlZGZBVZYw7WNV5KiBiBA==}
@@ -1984,18 +2010,18 @@ packages:
 
 snapshots:
 
-  '@astrojs/cloudflare@12.2.1(@types/node@22.13.4)(astro@5.3.0(@types/node@22.13.4)(rollup@4.34.6)(typescript@5.7.3))':
+  '@astrojs/cloudflare@12.2.1(@types/node@24.0.13)(astro@5.3.0(@types/node@24.0.13)(rollup@4.34.6)(typescript@5.7.3))':
     dependencies:
       '@astrojs/internal-helpers': 0.4.2
       '@astrojs/underscore-redirects': 0.6.0
       '@cloudflare/workers-types': 4.20250204.0
-      astro: 5.3.0(@types/node@22.13.4)(rollup@4.34.6)(typescript@5.7.3)
+      astro: 5.3.0(@types/node@24.0.13)(rollup@4.34.6)(typescript@5.7.3)
       esbuild: 0.25.0
       estree-walker: 3.0.3
       magic-string: 0.30.17
       miniflare: 3.20250204.1
       tiny-glob: 0.2.9
-      vite: 6.2.3(@types/node@22.13.4)
+      vite: 6.2.3(@types/node@24.0.13)
       wrangler: 3.109.0(@cloudflare/workers-types@4.20250204.0)
     transitivePeerDependencies:
       - '@types/node'
@@ -2043,12 +2069,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.0.8(astro@5.3.0(@types/node@22.13.4)(rollup@4.34.6)(typescript@5.7.3))':
+  '@astrojs/mdx@4.0.8(astro@5.3.0(@types/node@24.0.13)(rollup@4.34.6)(typescript@5.7.3))':
     dependencies:
       '@astrojs/markdown-remark': 6.1.0
       '@mdx-js/mdx': 3.1.0(acorn@8.14.0)
       acorn: 8.14.0
-      astro: 5.3.0(@types/node@22.13.4)(rollup@4.34.6)(typescript@5.7.3)
+      astro: 5.3.0(@types/node@24.0.13)(rollup@4.34.6)(typescript@5.7.3)
       es-module-lexer: 1.6.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.4
@@ -2379,6 +2405,10 @@ snapshots:
 
   '@oslojs/encoding@1.1.0': {}
 
+  '@playwright/test@1.54.1':
+    dependencies:
+      playwright: 1.54.1
+
   '@rollup/pluginutils@5.1.4(rollup@4.34.6)':
     dependencies:
       '@types/estree': 1.0.6
@@ -2513,14 +2543,13 @@ snapshots:
 
   '@types/node@17.0.45': {}
 
-  '@types/node@22.13.4':
+  '@types/node@24.0.13':
     dependencies:
-      undici-types: 6.20.0
-    optional: true
+      undici-types: 7.8.0
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 24.0.13
 
   '@types/unist@2.0.11': {}
 
@@ -2569,7 +2598,7 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro@5.3.0(@types/node@22.13.4)(rollup@4.34.6)(typescript@5.7.3):
+  astro@5.3.0(@types/node@24.0.13)(rollup@4.34.6)(typescript@5.7.3):
     dependencies:
       '@astrojs/compiler': 2.10.4
       '@astrojs/internal-helpers': 0.5.1
@@ -2621,8 +2650,8 @@ snapshots:
       unist-util-visit: 5.0.0
       unstorage: 1.14.4
       vfile: 6.0.3
-      vite: 6.2.3(@types/node@22.13.4)
-      vitefu: 1.0.5(vite@6.2.3(@types/node@22.13.4))
+      vite: 6.2.3(@types/node@24.0.13)
+      vitefu: 1.0.5(vite@6.2.3(@types/node@24.0.13))
       which-pm: 3.0.1
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
@@ -2926,6 +2955,9 @@ snapshots:
       pkg-dir: 4.2.0
 
   flattie@1.1.1: {}
+
+  fsevents@2.3.2:
+    optional: true
 
   fsevents@2.3.3:
     optional: true
@@ -3767,6 +3799,14 @@ snapshots:
       mlly: 1.7.4
       pathe: 2.0.3
 
+  playwright-core@1.54.1: {}
+
+  playwright@1.54.1:
+    dependencies:
+      playwright-core: 1.54.1
+    optionalDependencies:
+      fsevents: 2.3.2
+
   postcss@8.5.3:
     dependencies:
       nanoid: 3.3.11
@@ -4143,8 +4183,7 @@ snapshots:
 
   uncrypto@0.1.3: {}
 
-  undici-types@6.20.0:
-    optional: true
+  undici-types@7.8.0: {}
 
   undici@5.28.5:
     dependencies:
@@ -4240,18 +4279,18 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite@6.2.3(@types/node@22.13.4):
+  vite@6.2.3(@types/node@24.0.13):
     dependencies:
       esbuild: 0.25.0
       postcss: 8.5.3
       rollup: 4.34.6
     optionalDependencies:
-      '@types/node': 22.13.4
+      '@types/node': 24.0.13
       fsevents: 2.3.3
 
-  vitefu@1.0.5(vite@6.2.3(@types/node@22.13.4)):
+  vitefu@1.0.5(vite@6.2.3(@types/node@24.0.13)):
     optionalDependencies:
-      vite: 6.2.3(@types/node@22.13.4)
+      vite: 6.2.3(@types/node@24.0.13)
 
   web-namespaces@2.0.1: {}
 
