@@ -31,3 +31,6 @@ jobs:
 
       - name: Run CI
         run: pnpm run ci --reporter=github
+
+      - name: Run tests
+        run: pnpm run test:ci
