@@ -5,34 +5,25 @@ import Layout from '../layout/Layout.astro';
 import { SITE_AUTHOR } from '../consts';
 import { render } from 'astro:content';
 
-const sortedCollection = async (
-	collection: Awaited<ReturnType<typeof getCollection>>,
-) => {
-	const sortedCollection = collection.sort((a, b) => {
-		const prefixA = Number.parseInt(a.id.match(/^\d+/)?.[0] || '0', 10);
-		const prefixB = Number.parseInt(b.id.match(/^\d+/)?.[0] || '0', 10);
-		return prefixA - prefixB;
-	});
+const extractNumericPrefix = (id: string): number =>
+	Number.parseInt(id.match(/^\d+/)?.[0] || '0', 10);
 
-	return sortedCollection;
-};
-
-const getIndexCollection = async () => {
-	const collection = await getCollection('index');
-
-	return sortedCollection(collection);
-};
-
-const getIndexContents = async () => {
-	return await Promise.all(
-		indexCollection.map(async (collection) => {
-			const { Content } = await render(collection);
-			return Content;
-		}),
+const sortByNumericPrefix = <T extends { id: string }>(items: T[]): T[] =>
+	items.toSorted(
+		(a, b) => extractNumericPrefix(a.id) - extractNumericPrefix(b.id),
 	);
+
+const renderContent = async (
+	item: Awaited<ReturnType<typeof getCollection>>[0],
+) => {
+	const { Content } = await render(item);
+	return Content;
 };
 
-const indexCollection = await getIndexCollection();
+const getIndexContents = async () =>
+	getCollection('index')
+		.then(sortByNumericPrefix)
+		.then((collection) => Promise.all(collection.map(renderContent)));
 
 const indexContents = await getIndexContents();
 ---

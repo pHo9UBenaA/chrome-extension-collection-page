@@ -1,43 +1,44 @@
 {
-  "name": "online-resume",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro build && wrangler pages dev",
-    "astro": "astro",
-    "deploy": "astro build && wrangler pages deploy",
-    "cf-typegen": "wrangler types",
-	"test:ci": "CI=true playwright test",
-    "ci": "biome ci . --error-on-warnings",
-    "format": "pnpm run format:biome && pnpm run format:prettier",
-    "format:biome": "biome format --write .",
-    "format:prettier": "prettier --write \"**/*.{md,mdx}\"",
-    "lint": "biome lint --write . --error-on-warnings",
-    "check": "biome check --write ."
-  },
-  "dependencies": {
-    "@astrojs/cloudflare": "^12.2.1",
-    "@astrojs/mdx": "^4.0.8",
-    "@astrojs/sitemap": "^3.2.1",
-    "astro": "^5.3.0",
-    "remark-breaks": "^4.0.0",
-    "remark-custom-header-id": "^1.0.0",
-    "remark-gfm": "^4.0.1"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@cloudflare/workers-types": "^4.20250204.0",
-    "@playwright/test": "^1.54.1",
-    "@types/mdast": "^4.0.4",
-    "@types/node": "^24.0.13",
-    "@types/unist": "^3.0.3",
-    "unified": "^11.0.5",
-    "wrangler": "^3.109.0"
-  },
-  "resolutions": {
-    "cookie": "^0.7.0",
-    "esbuild": "^0.25.0"
-  }
+	"name": "online-resume",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro build && wrangler pages dev",
+		"astro": "astro",
+		"deploy": "astro build && wrangler pages deploy",
+		"cf-typegen": "wrangler types",
+		"test:ci": "CI=true playwright test",
+		"ci": "biome ci . --error-on-warnings",
+		"format": "pnpm run format:biome && pnpm run format:prettier",
+		"format:biome": "biome format --write .",
+		"format:prettier": "prettier --write \"**/*.{md,mdx}\"",
+		"lint": "biome lint --write . --error-on-warnings",
+		"check": "biome check --write ."
+	},
+	"dependencies": {
+		"@astrojs/cloudflare": "^12.6.0",
+		"@astrojs/mdx": "^4.3.0",
+		"@astrojs/sitemap": "^3.4.1",
+		"astro": "^5.11.0",
+		"remark-breaks": "^4.0.0",
+		"remark-custom-header-id": "^1.0.0",
+		"remark-gfm": "^4.0.1"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@cloudflare/workers-types": "^4.20250712.0",
+		"@playwright/test": "^1.54.1",
+		"@types/mdast": "^4.0.4",
+		"@types/node": "^24.0.13",
+		"@types/unist": "^3.0.3",
+		"prettier": "^3.6.2",
+		"unified": "^11.0.5",
+		"wrangler": "^4.24.3"
+	},
+	"resolutions": {
+		"cookie": "^0.7.0",
+		"esbuild": "^0.25.0"
+	}
 }
