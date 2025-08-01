@@ -31,7 +31,7 @@
 		"@cloudflare/workers-types": "^4.20250712.0",
 		"@playwright/test": "^1.54.1",
 		"@types/mdast": "^4.0.4",
-		"@types/node": "^24.0.13",
+		"@types/node": "^24.1.0",
 		"@types/unist": "^3.0.3",
 		"prettier": "^3.6.2",
 		"unified": "^11.0.5",
