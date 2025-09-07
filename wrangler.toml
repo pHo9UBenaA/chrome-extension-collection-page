@@ -1,4 +1,4 @@
-name = "my-chrome-extension-page"
+name = "chrome-extension"
 compatibility_date = "2025-03-08"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = "./dist"
