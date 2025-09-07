@@ -18,24 +18,24 @@
 		"check": "biome check --write ."
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "^12.6.0",
-		"@astrojs/mdx": "^4.3.0",
-		"@astrojs/sitemap": "^3.4.1",
-		"astro": "^5.11.0",
+		"@astrojs/cloudflare": "^12.6.7",
+		"@astrojs/mdx": "^4.3.4",
+		"@astrojs/sitemap": "^3.5.1",
+		"astro": "^5.13.5",
 		"remark-breaks": "^4.0.0",
 		"remark-custom-header-id": "^1.0.0",
 		"remark-gfm": "^4.0.1"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@cloudflare/workers-types": "^4.20250712.0",
-		"@playwright/test": "^1.54.1",
+		"@cloudflare/workers-types": "^4.20250906.0",
+		"@playwright/test": "^1.55.0",
 		"@types/mdast": "^4.0.4",
-		"@types/node": "^24.0.13",
+		"@types/node": "^24.3.1",
 		"@types/unist": "^3.0.3",
 		"prettier": "^3.6.2",
 		"unified": "^11.0.5",
-		"wrangler": "^4.24.3"
+		"wrangler": "^4.34.0"
 	},
 	"resolutions": {
 		"cookie": "^0.7.0",
