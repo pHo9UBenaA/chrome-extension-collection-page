@@ -21,7 +21,7 @@
 		"@astrojs/cloudflare": "^12.6.7",
 		"@astrojs/mdx": "^4.3.4",
 		"@astrojs/sitemap": "^3.5.1",
-		"astro": "^5.13.5",
+		"astro": "^5.14.1",
 		"remark-breaks": "^4.0.0",
 		"remark-custom-header-id": "^1.0.0",
 		"remark-gfm": "^4.0.1"
