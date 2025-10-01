@@ -29,7 +29,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
 		"@cloudflare/workers-types": "^4.20250906.0",
-		"@playwright/test": "^1.55.0",
+		"@playwright/test": "^1.55.1",
 		"@types/mdast": "^4.0.4",
 		"@types/node": "^24.3.1",
 		"@types/unist": "^3.0.3",
