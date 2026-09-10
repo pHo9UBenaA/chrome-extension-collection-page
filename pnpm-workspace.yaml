@@ -6,6 +6,8 @@ onlyBuiltDependencies:
   - esbuild
   - sharp
   - workerd
+overrides:
+  sharp: 0.35.4
 savePrefix: ''
 strictDepBuilds: true
 trustPolicy: no-downgrade
