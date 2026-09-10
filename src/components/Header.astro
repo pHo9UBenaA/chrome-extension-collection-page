@@ -1,15 +1,17 @@
 ---
-import { SITE_TITLE, SITE_AUTHOR, SITE_AUTHOR_ID } from '../consts';
-
-export const email = `${SITE_AUTHOR}@gmail.com`;
+import { SITE_AUTHOR_ID, SITE_TITLE } from '../consts';
 ---
 
 <header>
 	<nav>
-		<h1><a href="/">{SITE_TITLE}</a></h1>
+		<span class="site-title"><a href="/">{SITE_TITLE}</a></span>
 		<div class="social-links">
-			<a href={`https://github.com/${SITE_AUTHOR_ID}`} target="_blank">
-				<span class="sr-only">Go to {SITE_AUTHOR}'s GitHub repo</span>
+			<a
+				href={`https://github.com/${SITE_AUTHOR_ID}`}
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label={`${SITE_AUTHOR_ID} on GitHub`}
+			>
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true" width="24" height="24">
 					<path
 						fill="currentColor"
@@ -23,39 +25,24 @@ export const email = `${SITE_AUTHOR}@gmail.com`;
 </header>
 <style>
 	header {
-		position: fixed;
+		position: sticky;
 		top: 0;
-		left: 0;
-		right: 0;
 		z-index: 100;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-		background: rgba(var(--pink), 1);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1rem;
-
-		a, a.active {
-			text-decoration: none;
-		}
+		border-bottom: 1px solid var(--border);
+		background: color-mix(in srgb, var(--background) 94%, transparent);
+		backdrop-filter: blur(12px);
 	}
 
 	nav {
-		height: calc(2rem + 24px);
+		min-height: 4rem;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-
-		div {
-			display: grid;
-			gap: 1rem;
-		}
+		padding: 0 1rem;
 
 		a {
-			color: black;
-			text-decoration: none;
-		}
-		a.active {
+			border-bottom: 0;
+			color: var(--text);
 			text-decoration: none;
 		}
 
@@ -63,5 +50,21 @@ export const email = `${SITE_AUTHOR}@gmail.com`;
 		.social-links a {
 			display: flex;
 		}
+
+		.social-links a {
+			border-radius: 0.25rem;
+			padding: 0.5rem;
+		}
+
+		.social-links a:hover {
+			background: var(--surface-muted);
+		}
+	}
+
+	.site-title {
+		font-family: var(--font-mono);
+		font-size: 1rem;
+		font-weight: 700;
+		letter-spacing: -0.02em;
 	}
 </style>

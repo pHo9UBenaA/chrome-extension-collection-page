@@ -29,23 +29,15 @@ const indexContents = await getIndexContents();
 ---
 
 <Layout>
-	  <main>
-		<h2>{SITE_AUTHOR}'s Chrome Extensions</h2>
-		<p>Welcome to the Chrome Extensions collection created by {SITE_AUTHOR}.</p>
+	<main>
+		<header class="page-header">
+			<h1>{SITE_AUTHOR}'s Chrome Extensions</h1>
+			<p>Small tools for tabs and windows.</p>
+		</header>
 		{indexContents.map((Content) => (
-			<div class="container">
+			<section class="content-section">
 				<Content />
-			</div>
+			</section>
 		))}
+	</main>
 </Layout>
-
-<style>
-	button:hover {
-		cursor: pointer;
-	}
-	.container {
-		border: 1px solid #ccc;
-		padding: 1rem;
-		margin: 1rem 0;
-	}
-</style>

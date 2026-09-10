@@ -4,21 +4,16 @@
 import { EXTENSIONS } from "../../consts";
 export const extensions = EXTENSIONS;
 
-<h3 id="collection">Collection</h3>
+<h2 id="extensions">Extensions</h2>
 
-This is a collection of my chrome extensions.
-
-<ol>
+<ol class="extension-list">
   {extensions.map((ext) => (
     <li key={ext.id}>
-      <p>
-        <strong>{ext.name}</strong>
-      </p>
+      <h3>{ext.name}</h3>
       <p>{ext.description}</p>
       <p>
-        Get it on&nbsp;
         <a href={ext.webStore} target="_blank" rel="noopener noreferrer">
-          Chrome Web Store
+          View in the Chrome Web Store
         </a>
       </p>
     </li>

@@ -4,32 +4,22 @@
 import { EXTENSIONS } from "../../consts";
 export const extensions = EXTENSIONS;
 
-<h3 id="contact-support">Contact & Support</h3>
+<h2 id="support">Support</h2>
 
-If you have any inquiries or concerns regarding our products, please feel free to reach out to us.
+Use the support page or GitHub for help.
 
-You can contact us using one of the methods listed below.
-
-#### Web Store
-
-<ul>
+<ul class="support-list">
   {extensions.map((ext) => (
     <li key={`${ext.id}-support`}>
-      <p>
-        <a href={ext.support}>{ext.name}</a>
-      </p>
-    </li>
-  ))}
-</ul>
-
-#### GitHub
-
-<ul>
-  {extensions.map((ext) => (
-    <li key={`${ext.id}-github`}>
-      <p>
-        <a href={ext.github}>{ext.name}</a>
-      </p>
+      <strong>{ext.name}</strong>
+      <span aria-hidden="true"> — </span>
+      <a href={ext.support} target="_blank" rel="noopener noreferrer">
+        Support page
+      </a>
+      <span aria-hidden="true"> · </span>
+      <a href={ext.github} target="_blank" rel="noopener noreferrer">
+        GitHub
+      </a>
     </li>
   ))}
 </ul>
