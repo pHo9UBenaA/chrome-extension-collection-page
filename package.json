@@ -1,7 +1,9 @@
 {
-	"name": "online-resume",
+	"name": "chrome-extension-collection-page",
+	"private": true,
 	"type": "module",
 	"version": "0.0.1",
+	"packageManager": "pnpm@10.33.2",
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",

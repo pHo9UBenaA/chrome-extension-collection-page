@@ -1,0 +1,11 @@
+blockExoticSubdeps: true
+frozenLockfile: true
+minimumReleaseAge: 10080
+onlyBuiltDependencies:
+  - '@biomejs/biome'
+  - esbuild
+  - sharp
+  - workerd
+savePrefix: ''
+strictDepBuilds: true
+trustPolicy: no-downgrade
