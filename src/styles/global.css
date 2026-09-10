@@ -33,7 +33,7 @@
 html {
 	background: var(--background);
 	color-scheme: light;
-	scroll-padding-top: 5rem;
+	scroll-padding-top: 4.25rem;
 }
 
 body {
@@ -42,8 +42,8 @@ body {
 	background: var(--background);
 	color: var(--text);
 	font-family: var(--font-sans);
-	font-size: 1.0625rem;
-	line-height: 1.9;
+	font-size: 1rem;
+	line-height: 1.7;
 	overflow-wrap: anywhere;
 }
 
@@ -55,7 +55,7 @@ footer div {
 }
 
 main {
-	padding-bottom: 5rem;
+	padding-bottom: 3rem;
 }
 
 a {
@@ -92,17 +92,18 @@ h6 {
 }
 
 h1 {
-	margin: 0 0 1rem;
-	font-size: clamp(2.25rem, 7vw, 3.5rem);
-	letter-spacing: -0.045em;
+	margin: 0 0 0.5rem;
+	font-size: clamp(1.75rem, 5vw, 2.5rem);
+	letter-spacing: -0.035em;
 }
 
 h2 {
-	margin: 0 0 1.5rem;
+	margin: 0 0 1rem;
 	border-bottom: 1px solid var(--border);
-	padding-bottom: 0.75rem;
-	font-size: 1.75rem;
+	padding-bottom: 0.5rem;
+	font-size: 1.5rem;
 	letter-spacing: -0.025em;
+	scroll-margin-top: 4.25rem;
 }
 
 h3 {
@@ -111,21 +112,39 @@ h3 {
 }
 
 p {
-	margin: 0.75rem 0;
+	margin: 0.5rem 0;
 }
 
 .page-header {
-	margin: 5rem 0 4rem;
+	margin: 3rem 0 0;
 }
 
 .page-header p {
 	margin: 0;
 	color: var(--text-muted);
-	font-size: 1.125rem;
+}
+
+.page-nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1rem;
+	margin-top: 0.75rem;
+	font-size: 0.875rem;
+}
+
+.heading-anchor {
+	border-bottom: 0;
+	color: inherit;
+	font-weight: inherit;
+}
+
+.heading-anchor:hover {
+	border-bottom: 1px solid currentColor;
+	opacity: 1;
 }
 
 .content-section {
-	margin-top: 4rem;
+	margin-top: 2.5rem;
 }
 
 .extension-list {
@@ -136,7 +155,7 @@ p {
 
 .extension-list > li {
 	border-bottom: 1px solid var(--border);
-	padding: 1.5rem 0 1.75rem 0.5rem;
+	padding: 1rem 0 1.125rem 0.5rem;
 }
 
 .extension-list > li:first-child {
@@ -161,14 +180,14 @@ p {
 }
 
 .support-list {
-	margin: 1.5rem 0 0;
+	margin: 1rem 0 0;
 	padding: 0;
 	list-style: none;
 }
 
 .support-list li {
 	border-bottom: 1px solid var(--border);
-	padding: 0.75rem 0;
+	padding: 0.5rem 0;
 }
 
 .support-list li:last-child {
@@ -212,17 +231,12 @@ code {
 }
 
 @media (max-width: 38rem) {
-	body {
-		font-size: 1rem;
-		line-height: 1.8;
-	}
-
 	.page-header {
-		margin: 3.5rem 0 3rem;
+		margin-top: 2rem;
 	}
 
 	.content-section {
-		margin-top: 3rem;
+		margin-top: 2rem;
 	}
 
 	.extension-list {

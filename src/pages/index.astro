@@ -33,6 +33,11 @@ const indexContents = await getIndexContents();
 		<header class="page-header">
 			<h1>{SITE_AUTHOR}'s Chrome Extensions</h1>
 			<p>Small tools for tabs and windows.</p>
+			<nav class="page-nav" aria-label="On this page">
+				<a href="#extensions">Extensions</a>
+				<a href="#privacy">Privacy</a>
+				<a href="#support">Support</a>
+			</nav>
 		</header>
 		{indexContents.map((Content) => (
 			<section class="content-section">
