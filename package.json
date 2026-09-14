@@ -4,32 +4,25 @@
 	"type": "module",
 	"version": "0.0.1",
 	"packageManager": "pnpm@10.33.2",
+	"engines": {
+		"node": ">=22"
+	},
 	"scripts": {
-		"dev": "astro dev",
-		"build": "astro build",
-		"preview": "astro build && wrangler pages dev",
-		"astro": "astro",
-		"deploy": "astro build && wrangler pages deploy",
-		"cf-typegen": "wrangler types",
+		"dev": "node scripts/serve.mjs",
+		"build": "node scripts/build.mjs",
+		"preview": "pnpm run build && node scripts/serve.mjs --dist",
+		"deploy": "pnpm run build && wrangler pages deploy",
 		"test:ci": "CI=true playwright test",
 		"ci": "biome ci . --error-on-warnings",
 		"format": "pnpm run format:biome && pnpm run format:prettier",
 		"format:biome": "biome format --write .",
-		"format:prettier": "prettier --write \"**/*.{md,mdx}\"",
+		"format:prettier": "prettier --write \"**/*.md\" \"public/*.html\"",
 		"lint": "biome lint --write . --error-on-warnings",
 		"check": "biome check --write ."
 	},
-	"dependencies": {
-		"@astrojs/cloudflare": "14.2.6",
-		"@astrojs/mdx": "8.0.0",
-		"@astrojs/sitemap": "3.7.4",
-		"astro": "7.2.10"
-	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.12",
-		"@cloudflare/workers-types": "5.20260903.1",
 		"@playwright/test": "1.62.1",
-		"@types/node": "24.13.3",
 		"prettier": "3.9.6",
 		"wrangler": "4.128.0"
 	}

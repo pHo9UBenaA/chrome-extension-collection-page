@@ -7,8 +7,9 @@ on:
       - master
 
 jobs:
-  bun-ci:
-    runs-on: ubuntu-latest
+  checks:
+    # Screenshot baselines use macOS system fonts, matching local verification.
+    runs-on: macos-latest
 
     steps:
       - name: Checkout
@@ -23,19 +24,19 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install
 
       - name: Install Playwright
-        run : npx playwright install chromium --with-deps
+        run: pnpm exec playwright install chromium --with-deps
 
       - name: Run CI
         run: pnpm run ci --reporter=github
 
-      - name: Run tests
+      - name: Run browser tests
         run: pnpm run test:ci
 
       # - name: Upload test snapshots
