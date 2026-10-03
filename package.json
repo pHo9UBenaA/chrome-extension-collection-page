@@ -18,10 +18,13 @@
 		"format:biome": "biome format --write .",
 		"format:prettier": "prettier --write \"**/*.md\" \"public/*.html\"",
 		"lint": "biome lint --write . --error-on-warnings",
+		"lint:actions": "bash scripts/lint-github-actions.sh",
+		"lint:security": "siro lint --severity warn",
 		"check": "biome check --write ."
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.5.12",
+		"@pho9ubenaa/siro": "0.5.1",
 		"@playwright/test": "1.62.1",
 		"prettier": "3.9.6",
 		"wrangler": "4.128.0"
