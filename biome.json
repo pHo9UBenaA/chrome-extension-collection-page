@@ -20,24 +20,13 @@
 			"preset": "recommended",
 			"correctness": {
 				"noUnusedImports": "warn"
-			},
-			"nursery": {
-				"useSortedClasses": {
-					"level": "error",
-					"fix": "safe",
-					"options": {
-						"attributes": ["className"],
-						"functions": ["cn"]
-					}
-				}
 			}
 		}
 	},
 	"javascript": {
 		"formatter": {
 			"semicolons": "always",
-			"quoteStyle": "single",
-			"jsxQuoteStyle": "single"
+			"quoteStyle": "single"
 		}
 	}
 }

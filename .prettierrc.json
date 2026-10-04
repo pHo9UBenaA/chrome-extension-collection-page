@@ -1,6 +1,12 @@
 {
-	"printWidth": 10000,
+	"printWidth": 100,
 	"overrides": [
+		{
+			"files": ["*.svg"],
+			"options": {
+				"parser": "html"
+			}
+		},
 		{
 			"files": ["*.md"],
 			"options": {

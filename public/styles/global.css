@@ -80,10 +80,7 @@ a:focus-visible {
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
+h3 {
 	color: var(--text-strong);
 	font-weight: 700;
 	font-kerning: normal;
@@ -194,17 +191,6 @@ p {
 	border-bottom: 0;
 }
 
-img {
-	max-width: 100%;
-	height: auto;
-}
-
-code {
-	border-radius: 0.25rem;
-	background: var(--surface-muted);
-	padding: 0.15rem 0.35rem;
-}
-
 .not-found {
 	min-height: calc(100vh - 9rem);
 	padding-top: 6rem;
@@ -216,18 +202,6 @@ code {
 
 .not-found p {
 	color: var(--text-muted);
-}
-
-.sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border: 0;
 }
 
 .site-header {

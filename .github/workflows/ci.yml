@@ -48,8 +48,11 @@ jobs:
       - name: Install Playwright
         run: pnpm exec playwright install chromium --with-deps
 
-      - name: Run CI
+      - name: Check JavaScript, CSS and configuration
         run: pnpm run ci --reporter=github
+
+      - name: Check Markdown, HTML and SVG formatting
+        run: pnpm run format:check
 
       - name: Run browser tests
         run: pnpm run test:ci
