@@ -6,10 +6,24 @@
 	--text-muted: #c1c3c8;
 	--border: #353841;
 	--accent: #b3c7ff;
-	--font-sans:
-		-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-		"Noto Sans", Arial, sans-serif;
+	--font-sans: "Atkinson", "Helvetica Neue", Arial, sans-serif;
 	--font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@font-face {
+	font-family: "Atkinson";
+	src: url("/fonts/atkinson-regular.woff") format("woff");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Atkinson";
+	src: url("/fonts/atkinson-bold.woff") format("woff");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
 }
 
 * {
@@ -19,7 +33,7 @@
 html {
 	background: var(--background);
 	color-scheme: dark;
-	scroll-padding-top: 5.5rem;
+	scroll-padding-top: 4.25rem;
 }
 
 body {
@@ -29,15 +43,14 @@ body {
 	color: var(--text);
 	font-family: var(--font-sans);
 	font-size: 1rem;
-	line-height: 1.75;
-	-webkit-font-smoothing: antialiased;
+	line-height: 1.7;
 	overflow-wrap: anywhere;
 }
 
 main,
-.site-header nav,
+header nav,
 footer div {
-	width: min(100% - 3rem, 45rem);
+	width: min(100% - 2rem, 47.25rem);
 	margin-inline: auto;
 }
 
@@ -47,19 +60,22 @@ main {
 
 a {
 	color: var(--accent);
-	text-decoration: underline;
-	text-underline-offset: 0.15em;
+	font-weight: 700;
+	text-decoration: none;
+	border-bottom: 1px dotted currentColor;
 	transition:
-		color 160ms ease,
-		background-color 160ms ease;
+		border-color 160ms ease,
+		opacity 160ms ease;
 }
 
 a:hover {
 	color: var(--text-strong);
+	border-bottom-style: solid;
+	opacity: 0.75;
 }
 
 a:focus-visible {
-	outline: 2px solid var(--accent);
+	outline: 3px solid color-mix(in srgb, var(--accent) 32%, transparent);
 	outline-offset: 3px;
 }
 
@@ -67,27 +83,30 @@ h1,
 h2,
 h3 {
 	color: var(--text-strong);
-	font-weight: 600;
+	font-weight: 700;
 	font-kerning: normal;
-	line-height: 1.2;
+	line-height: 1.25;
 	text-wrap: balance;
 }
 
 h1 {
-	margin: 0 0 1rem;
-	font-size: 2.625rem;
+	margin: 0 0 0.5rem;
+	font-size: 1.5rem;
 	letter-spacing: -0.025em;
 }
 
 h2 {
-	margin: 0 0 1.5rem;
-	font-size: 2.1875rem;
+	margin: 0 0 1rem;
+	border-bottom: 1px solid var(--border);
+	padding-bottom: 0.5rem;
+	font-size: 1.5rem;
 	letter-spacing: -0.025em;
+	scroll-margin-top: 4.25rem;
 }
 
 h3 {
-	margin: 0 0 1rem;
-	font-size: 1.8125rem;
+	margin: 0 0 0.5rem;
+	font-size: 1.25rem;
 }
 
 p {
@@ -107,22 +126,23 @@ p {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.5rem 1rem;
-	margin-top: 1.5rem;
+	margin-top: 0.75rem;
 	font-size: 0.875rem;
 }
 
 .heading-anchor {
+	border-bottom: 0;
 	color: inherit;
 	font-weight: inherit;
-	text-decoration: none;
 }
 
 .heading-anchor:hover {
-	text-decoration: underline;
+	border-bottom: 1px solid currentColor;
+	opacity: 1;
 }
 
 .content-section {
-	margin-top: 3rem;
+	margin-top: 2.5rem;
 }
 
 .extension-list {
@@ -133,7 +153,7 @@ p {
 
 .extension-list > li {
 	border-bottom: 1px solid var(--border);
-	padding: 1.5rem 0 1.5rem 0.5rem;
+	padding: 1rem 0 1.125rem 0.5rem;
 }
 
 .extension-list > li:first-child {
@@ -191,17 +211,18 @@ p {
 	z-index: 100;
 	border-bottom: 1px solid var(--border);
 	background: var(--surface-muted);
+	backdrop-filter: blur(12px);
 }
 
 .site-header nav {
-	min-height: 4rem;
+	min-height: 3.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	gap: 1rem;
 }
 
 .site-header nav a {
+	border-bottom: 0;
 	color: var(--text-strong);
 	text-decoration: none;
 }
@@ -221,44 +242,24 @@ p {
 }
 
 .site-title {
+	font-family: var(--font-mono);
 	font-size: 1rem;
-	font-weight: 600;
+	font-weight: 700;
 	letter-spacing: -0.02em;
 }
 
 footer {
 	border-top: 1px solid var(--border);
 	color: var(--text-muted);
-	font-size: 0.875rem;
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
 }
 
 footer div {
-	padding-block: 2rem;
+	padding: 2rem 1rem;
 }
 
-@media (max-width: 50rem) {
-	main,
-	.site-header nav,
-	footer div {
-		width: min(100% - 2rem, 45rem);
-	}
-
-	h1 {
-		font-size: 2.1875rem;
-	}
-
-	h2 {
-		font-size: 1.8125rem;
-	}
-
-	h3 {
-		font-size: 1.5rem;
-	}
-
-	.site-header nav {
-		min-height: 3.5rem;
-	}
-
+@media (max-width: 38rem) {
 	.page-header {
 		margin-top: 2rem;
 	}
