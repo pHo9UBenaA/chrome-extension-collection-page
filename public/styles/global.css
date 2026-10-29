@@ -166,6 +166,21 @@ p {
 }
 
 .extension-list > li::marker {
+	content: "";
+}
+
+.extension-list h3 {
+	position: relative;
+}
+
+.extension-list h3::before {
+	content: counter(list-item, decimal-leading-zero) ".";
+	position: absolute;
+	inset-inline-end: calc(100% + 1rem);
+	width: max-content;
+	white-space: nowrap;
+	top: 50%;
+	transform: translateY(-50%);
 	color: var(--accent);
 	font-family: var(--font-mono);
 	font-size: 0.8rem;
