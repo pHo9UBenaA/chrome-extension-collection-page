@@ -52,6 +52,31 @@ for (const headingId of ['extensions', 'privacy', 'support']) {
 	});
 }
 
+for (const colorScheme of ['light', 'dark']) {
+	for (const urlPath of ['/', '/missing-page']) {
+		test(`${urlPath} uses the dark palette with ${colorScheme} system preference`, async ({
+			page,
+		}) => {
+			await page.emulateMedia({ colorScheme });
+			await page.goto(urlPath);
+			await expect(page.locator('html')).toHaveCSS('color-scheme', 'dark');
+			await expect(page.locator('body')).toHaveCSS(
+				'background-color',
+				'rgb(23, 24, 28)',
+			);
+			await expect(page.locator('body')).toHaveCSS(
+				'color',
+				'rgb(193, 195, 200)',
+			);
+			await expect(page.locator('h1')).toHaveCSS('color', 'rgb(255, 255, 255)');
+			const link = page.locator('main a').last();
+			await expect(link).toHaveCSS('color', 'rgb(179, 199, 255)');
+			await link.focus();
+			await expect(link).toHaveCSS('outline-style', 'solid');
+		});
+	}
+}
+
 test('homepage metadata identifies the canonical site URL', async ({
 	page,
 }) => {

@@ -8,7 +8,13 @@ for (const { viewportName, viewport } of [
 		page,
 	}) => {
 		await page.setViewportSize(viewport);
+		await page.emulateMedia({ colorScheme: 'dark' });
 		await page.goto('/');
+		expect(
+			await page.evaluate(
+				() => document.documentElement.scrollWidth <= window.innerWidth,
+			),
+		).toBe(true);
 		await expect(page).toHaveScreenshot(`homepage-${viewportName}.png`, {
 			fullPage: true,
 		});
