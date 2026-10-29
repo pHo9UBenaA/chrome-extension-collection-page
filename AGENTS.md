@@ -33,6 +33,20 @@ Screenshot baselines use macOS system fonts. Run screenshot comparisons on macOS
 operating systems may render text differently. The browser tests build and serve the site
 automatically.
 
+### Dependency and secret checks
+
+- `pnpm check:dependencies` runs `pnpm audit` and queries the OSV API for all locked packages,
+  including development, transitive and other-platform optional dependencies. It requires network
+  access and sends package names and versions to OSV, not local paths or lockfile contents. Exit
+  codes: `0` means both audits completed without findings, `1` means vulnerabilities were found, and
+  `2` means an audit could not complete. Existing vulnerabilities cause this check to fail.
+- `pnpm check:secrets` runs Secretlint on Git-tracked files, including force-added ignored files. It
+  does not scan untracked files or Git history. Add new files to Git before using this check to
+  verify them.
+
+These commands are separate from `pnpm lint:security`, which checks dependency security settings,
+not known vulnerabilities. They are not currently run by CI.
+
 ## When changing GitHub Actions
 
 Run `pnpm lint:actions` to audit workflows. First install `ghalint`, `zizmor`, `actionlint` and
