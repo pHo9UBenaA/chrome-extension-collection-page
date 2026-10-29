@@ -35,12 +35,12 @@ automatically.
 
 ### Dependency and secret checks
 
-- `pnpm check:dependencies` runs `pnpm audit` and queries the OSV API for all locked packages,
-  including development, transitive and other-platform optional dependencies. It requires network
-  access and sends package names and versions to OSV, not local paths or lockfile contents. Exit
-  codes: `0` means both audits completed without findings, `1` means vulnerabilities were found, and
-  `2` means an audit could not complete. Existing vulnerabilities cause this check to fail.
-- `pnpm check:secrets` runs Secretlint on Git-tracked files, including force-added ignored files. It
+- `pnpm check:dependencies` checks all locked packages for known vulnerabilities, including
+  development, transitive and other-platform optional dependencies. It requires network access for
+  `pnpm audit` and OSV; OSV receives package names and versions, not local paths or lockfile
+  contents. Exit codes: `0` means both audits completed without findings, `1` means vulnerabilities
+  were found (including pre-existing ones), and `2` means an audit could not complete.
+- `pnpm check:secrets` checks Git-tracked files for secrets, including force-added ignored files. It
   does not scan untracked files or Git history. Add new files to Git before using this check to
   verify them.
 
