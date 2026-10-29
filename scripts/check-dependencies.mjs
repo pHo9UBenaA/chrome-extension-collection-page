@@ -80,6 +80,14 @@ const runPnpmJson = (pnpmEntryPath, args) => {
 	}
 };
 
+const checkPnpmAudit = (pnpmEntryPath) => {
+	const { data, exitCode } = runPnpmJson(pnpmEntryPath, ['audit', '--json']);
+	const report = parsePnpmReport(data);
+	if (exitCode !== 0 && report.findingCount === 0)
+		throw new Error('Command exited 1 without recognized findings');
+	return report;
+};
+
 const parseLockedPackage = (alias, entry) => {
 	const name = entry.from === undefined ? alias : requireString(entry.from);
 	const version = requireString(entry.version);
@@ -108,7 +116,6 @@ const readLockedPackages = (pnpmEntryPath) => {
 	const packagesByIdentity = new Map();
 	while (pendingNodes.length > 0) {
 		const node = pendingNodes.pop();
-		if (!node) break;
 		for (const group of [
 			'dependencies',
 			'devDependencies',
@@ -117,8 +124,9 @@ const readLockedPackages = (pnpmEntryPath) => {
 			if (node[group] === undefined) continue;
 			for (const [alias, value] of Object.entries(requireObject(node[group]))) {
 				const entry = requireObject(value);
-				const pkg = parseLockedPackage(alias, entry);
-				packagesByIdentity.set(`${pkg.name}@${pkg.version}`, pkg);
+				const lockedPackage = parseLockedPackage(alias, entry);
+				const packageIdentity = `${lockedPackage.name}@${lockedPackage.version}`;
+				packagesByIdentity.set(packageIdentity, lockedPackage);
 				pendingNodes.push(entry);
 			}
 		}
@@ -262,13 +270,9 @@ export const checkDependencies = async () => {
 		console.error('Run this check via pnpm check:dependencies');
 		return 2;
 	}
-	const pnpmStatus = await runAudit('pnpm audit', () => {
-		const { data, exitCode } = runPnpmJson(pnpmEntryPath, ['audit', '--json']);
-		const report = parsePnpmReport(data);
-		if (exitCode !== 0 && report.findingCount === 0)
-			throw new Error('Command exited 1 without recognized findings');
-		return report;
-	});
+	const pnpmStatus = await runAudit('pnpm audit', () =>
+		checkPnpmAudit(pnpmEntryPath),
+	);
 	const osvStatus = await runAudit('OSV API', () => checkOsv(pnpmEntryPath));
 	return Math.max(pnpmStatus, osvStatus);
 };

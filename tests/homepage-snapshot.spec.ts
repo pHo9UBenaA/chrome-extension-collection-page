@@ -10,11 +10,13 @@ for (const { viewportName, viewport } of [
 		await page.setViewportSize(viewport);
 		await page.emulateMedia({ colorScheme: 'dark' });
 		await page.goto('/');
-		expect(
-			await page.evaluate(
-				() => document.documentElement.scrollWidth <= window.innerWidth,
-			),
-		).toBe(true);
+		const pageDimensions = await page.evaluate(() => ({
+			contentWidth: document.documentElement.scrollWidth,
+			viewportWidth: window.innerWidth,
+		}));
+		expect(pageDimensions.contentWidth).toBeLessThanOrEqual(
+			pageDimensions.viewportWidth,
+		);
 		await expect(page).toHaveScreenshot(`homepage-${viewportName}.png`, {
 			fullPage: true,
 		});
@@ -25,33 +27,40 @@ for (const { viewportName, viewport } of [
 	}) => {
 		await page.setViewportSize(viewport);
 		await page.goto('/');
-		const entry = page.locator('.extension-list > li').first();
-		await entry.locator('h3').evaluate((heading) => {
+		const extensionEntry = page.locator('.extension-list > li').first();
+		await extensionEntry.locator('h3').evaluate((heading) => {
 			heading.textContent =
 				'Window Merger with a longer extension name '.repeat(3);
 			heading.style.fontSize = '2rem';
 		});
 		await page.evaluate(() => document.fonts.ready);
-		await expect(entry).toHaveCSS('display', 'grid');
-		const layout = await entry.evaluate((item) => {
-			const marker = getComputedStyle(item, '::before');
-			const heading = item.querySelector('h3').getBoundingClientRect();
-			const description = item.querySelector('p').getBoundingClientRect();
+		await expect(extensionEntry).toHaveCSS('display', 'grid');
+		const layout = await extensionEntry.evaluate((item) => {
+			const heading = item.querySelector('h3');
+			const description = item.querySelector('p');
+			if (!heading || !description) {
+				throw new Error('Extension entry must have a heading and description');
+			}
+
+			const markerStyle = getComputedStyle(item, '::before');
+			const headingBounds = heading.getBoundingClientRect();
+			const descriptionBounds = description.getBoundingClientRect();
 			return {
-				markerPosition: marker.position,
-				markerAlignment: marker.alignSelf,
-				headingBottom: heading.bottom,
-				descriptionTop: description.top,
-				headingLeft: heading.left,
-				descriptionLeft: description.left,
-				overflows: document.documentElement.scrollWidth > window.innerWidth,
+				markerPosition: markerStyle.position,
+				markerAlignment: markerStyle.alignSelf,
+				headingBottom: headingBounds.bottom,
+				descriptionTop: descriptionBounds.top,
+				headingLeft: headingBounds.left,
+				descriptionLeft: descriptionBounds.left,
+				contentWidth: document.documentElement.scrollWidth,
+				viewportWidth: window.innerWidth,
 			};
 		});
 		expect(layout.markerPosition).toBe('static');
 		expect(layout.markerAlignment).toBe('center');
 		expect(layout.descriptionTop).toBeGreaterThan(layout.headingBottom);
 		expect(layout.descriptionLeft).toBe(layout.headingLeft);
-		expect(layout.overflows).toBe(false);
+		expect(layout.contentWidth).toBeLessThanOrEqual(layout.viewportWidth);
 	});
 
 	test(`navigation underline spacing matches list links at the ${viewportName} viewport`, async ({
@@ -60,20 +69,22 @@ for (const { viewportName, viewport } of [
 		await page.setViewportSize(viewport);
 		await page.goto('/');
 		await page.evaluate(() => document.fonts.ready);
-		const gaps = await page
+		const linkMeasurements = await page
 			.locator('.extension-list a, .support-list a, .page-nav a')
 			.evaluateAll((links) =>
 				links.map((link) => {
 					const textRange = document.createRange();
 					textRange.selectNodeContents(link);
-					return (
-						link.getBoundingClientRect().bottom -
-						textRange.getBoundingClientRect().bottom
-					);
+					return {
+						href: link.getAttribute('href'),
+						underlineGapPx:
+							link.getBoundingClientRect().bottom -
+							textRange.getBoundingClientRect().bottom,
+					};
 				}),
 			);
-		for (const gap of gaps) {
-			expect(gap).toBeCloseTo(1, 1);
+		for (const { href, underlineGapPx } of linkMeasurements) {
+			expect(underlineGapPx, `Underline spacing for ${href}`).toBeCloseTo(1, 1);
 		}
 	});
 }

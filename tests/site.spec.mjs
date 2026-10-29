@@ -20,21 +20,26 @@ test('each extension has matching support links in the same order', async ({
 		const extensionEntry = extensionEntries.nth(extensionIndex);
 		const supportEntry = supportEntries.nth(extensionIndex);
 		const extensionName = await extensionEntry.locator('h3').innerText();
-		await test.step(extensionName, async () => {
-			await expect(supportEntry.locator('strong')).toHaveText(extensionName);
-			const webStoreUrl = await extensionEntry
-				.getByRole('link', { name: 'View in the Chrome Web Store' })
-				.getAttribute('href');
-			expect(new URL(webStoreUrl).origin).toBe(
-				'https://chromewebstore.google.com',
+		const webStoreLink = extensionEntry.getByRole('link', {
+			name: 'View in the Chrome Web Store',
+		});
+
+		await test.step(`${extensionName}: store and repository links`, async () => {
+			await expect(webStoreLink).toHaveAttribute(
+				'href',
+				/^https:\/\/chromewebstore\.google\.com\//,
 			);
+			await expect(
+				supportEntry.getByRole('link', { name: 'GitHub' }),
+			).toHaveAttribute('href', /^https:\/\/github\.com\//);
+		});
+
+		await test.step(`${extensionName}: matching support entry`, async () => {
+			await expect(supportEntry.locator('strong')).toHaveText(extensionName);
+			const webStoreUrl = await webStoreLink.getAttribute('href');
 			await expect(
 				supportEntry.getByRole('link', { name: 'Support page' }),
 			).toHaveAttribute('href', `${webStoreUrl}/support`);
-			const repositoryUrl = await supportEntry
-				.getByRole('link', { name: 'GitHub' })
-				.getAttribute('href');
-			expect(new URL(repositoryUrl).origin).toBe('https://github.com');
 		});
 	}
 });

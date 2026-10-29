@@ -8,6 +8,8 @@ const servedDirectory = resolve(
 	repositoryDirectory,
 	process.argv.includes('--dist') ? 'dist' : 'public',
 );
+// The trailing separator prevents sibling directories from matching the prefix.
+const servedDirectoryPrefix = `${servedDirectory}${sep}`;
 const port = Number(process.env.PORT || 4321);
 const contentTypesByExtension = {
 	'.html': 'text/html; charset=utf-8',
@@ -19,12 +21,11 @@ const contentTypesByExtension = {
 	'.woff': 'font/woff',
 };
 
-async function readSiteFile(urlPath) {
-	const filePath = resolve(
-		servedDirectory,
-		`.${urlPath === '/' ? '/index.html' : urlPath}`,
-	);
-	if (!filePath.startsWith(`${servedDirectory}${sep}`)) {
+async function readSiteFile(decodedPathname) {
+	const sitePath = decodedPathname === '/' ? '/index.html' : decodedPathname;
+	// The dot keeps the leading slash relative to the served directory.
+	const filePath = resolve(servedDirectory, `.${sitePath}`);
+	if (!filePath.startsWith(servedDirectoryPrefix)) {
 		return { statusCode: 403 };
 	}
 
@@ -32,7 +33,7 @@ async function readSiteFile(urlPath) {
 		// Check symlink targets as well as the requested path to keep source private.
 		const resolvedFilePath = await realpath(filePath);
 		if (
-			!resolvedFilePath.startsWith(`${servedDirectory}${sep}`) ||
+			!resolvedFilePath.startsWith(servedDirectoryPrefix) ||
 			!(await stat(resolvedFilePath)).isFile()
 		) {
 			return { statusCode: 403 };
@@ -63,10 +64,10 @@ const server = createServer(async (request, response) => {
 	}
 
 	try {
-		const urlPath = decodeURIComponent(
-			new URL(request.url, 'http://localhost').pathname,
-		);
-		const { statusCode, contentType, body } = await readSiteFile(urlPath);
+		const encodedPathname = new URL(request.url, 'http://localhost').pathname;
+		const decodedPathname = decodeURIComponent(encodedPathname);
+		const { statusCode, contentType, body } =
+			await readSiteFile(decodedPathname);
 		if (body === undefined) {
 			response.writeHead(statusCode).end();
 			return;
